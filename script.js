@@ -7,8 +7,10 @@
 function writeDing() {
   console.log('Ding!');
 }
-
-var dingHandle = setTimeout (writeDing(), 3000);
+var timeoutID;
+function dingHandle() {
+    timeoutID = setTimeout(writeDing, 3000);}
+dingHandle();
 
 /*===============================================================*/
 
@@ -33,11 +35,23 @@ var dingHandle = setTimeout (writeDing(), 3000);
 
 var words = ['short', 'medium', 'long', 'interminable', 'lengthy'];
 
-var byLength = function (A, B) {
-  // your code here
-};
+var sortedWords = words.sort(function (A, B){
+  return (A.length-B.length);
+});
+sortedWords;
 
-var sortedWords = words.sort(byLength);
+/*function myFunction(A, B) {
+  A = sortedWords[0].length;
+  B = sortedWords[3].length;
+  if (A < B) {
+    return -1;
+  } else if (A === B) {
+    return 0;
+  } else {
+    return 1;
+  }
+  console.log(myFunction);
+}*/
 
 
 
@@ -49,7 +63,7 @@ var sortedWords = words.sort(byLength);
 // the words from longest to shortest?  Write it as an anomymous function.
 
 var sortedWords = words.sort(function (A, B){
-  // your code here
+  return (A.length - B.length) * -1;
 });
 
 
@@ -75,9 +89,16 @@ function power(m, n) {
 // a number as an argument and return that number raised to the power
 // you specified in the makePower call.
 
-function makePower(power) {
-  // your code here
-}
+function makePower(m) {
+  return function(n) {
+    var result = 1;
+
+    for (var i = 1; i <= n; i++) {
+      result *= m;
+    }
+
+    return result;
+}}
 
 var power2 = makePower(2);
 var power3 = makePower(3);
@@ -86,3 +107,35 @@ var power3 = makePower(3);
 /*=======================================================================
 Adapted from "Callback Hell" by cwilbur and tsyan https://github.com/ga-wdi-boston/wdi_1_js_functions_first_class_quiz/blob/master/quiz.js
 ========================================================================*/
+var assert = require('assert');
+require('./script.js');
+
+//Testing for Question 2
+try {
+  assert.deepEqual(sortedWords, ['long', 'short', 'medium', 'lengthy', 'interminable']);
+  console.log("Answer to question 2 is correct");
+}
+catch (e) {
+  console.log("Answer to question 2 isn't correct yet.");
+}
+
+//Testing for Question 3
+try {
+  assert.deepEqual(sortedWords, ['interminable', 'lengthy', 'medium', 'short', 'long']);
+  console.log("Answer to question 3 is correct");
+}
+catch (e) {
+  console.log("Answer to question 3 isn't correct yet.");
+}
+
+//Testing for Question 4
+try {
+  assert.strictEqual(power2(4), 16);
+  assert.strictEqual(power2(3), 8);
+  assert.strictEqual(power3(2), 9);
+  assert.strictEqual(power3(3), 27);
+  console.log("Answer to question 4 is correct");
+}
+catch (e) {
+  console.log("Answer to question 4 isn't correct yet.");
+}
