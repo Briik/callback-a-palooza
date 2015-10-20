@@ -89,8 +89,8 @@ function power(m, n) {
 // a number as an argument and return that number raised to the power
 // you specified in the makePower call.
 
-function makePower(m) {
-  return function(n) {
+function makePower(n) {
+  return function(m) {
     var result = 1;
 
     for (var i = 1; i <= n; i++) {
@@ -131,8 +131,8 @@ catch (e) {
 //Testing for Question 4
 try {
   assert.strictEqual(power2(4), 16);
-  assert.strictEqual(power2(3), 8);
-  assert.strictEqual(power3(2), 9);
+  assert.strictEqual(power2(3), 9);
+  assert.strictEqual(power3(2), 8);
   assert.strictEqual(power3(3), 27);
   console.log("Answer to question 4 is correct");
 }
